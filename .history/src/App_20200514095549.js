@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 import PrivateRoute from './routes/PrivateRoute';
 import Admin from "./pages/Admin";
 import AuthForm from "./components/AuthForm"
@@ -18,15 +18,23 @@ function App(props) {
     <AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens }}>
       <Router>
         <div>
-          <ul>         
+          <ul>
+            { authTokens === null && 
+            <li>
+              <Link to="/">Log In</Link>
+            </li>
+            }
+            { authTokens !== null &&
+            <li>
+                <Link to="/">Log Out</Link>
+            </li>
+            }
           <li>
             <Link to="/admin">Admin Page</Link>
           </li>
           </ul>
-          <Switch>
-            <Route exact path="/" component={AuthForm} />
-            <PrivateRoute path="/admin" component={Admin} />
-          </Switch>
+          <Route exact path="/" component={AuthForm} />
+          <PrivateRoute path="/admin" component={Admin} />
         </div>
       </Router>
     </AuthContext.Provider>

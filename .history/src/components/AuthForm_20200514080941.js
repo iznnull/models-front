@@ -34,6 +34,9 @@ const useStyles = makeStyles((theme) => ({
   }));
   
 function AuthForm(props) {    
+
+  const adminPage = '/admin';
+
        
     const [user, setUser] = useState("");
     const [password, setPassword] = useState("");
@@ -49,15 +52,15 @@ function AuthForm(props) {
         if (result.status === 200) {
           console.log(result)
           setAuthTokens(result.data);
-          return <Redirect to="/admin"/>;
+          return <Redirect to={adminPage} />;          
         } else {          
           console.log("Error: " + result.status);
         }
       }).catch(e => {
-        console.log("Error" + e);
+        console.log("Error" + e)
       });        
     }
-           
+       
     return <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
@@ -69,7 +72,7 @@ function AuthForm(props) {
             Sign in
             </Typography>
 
-            <form className={classes.form} validate="true" method="get" action="/admin" onSubmit={onLoginForm_Submit}>
+            <form className={classes.form} validate="true" onSubmit={onLoginForm_Submit}>
                 <TextField
                     variant="outlined"
                     margin="normal"
@@ -106,8 +109,8 @@ function AuthForm(props) {
                     className={classes.submit}
                 >
                     Sign In
-                </Button>                               
-            </form>           
+                </Button>                
+            </form>
         </div>
       </Container>;
 }

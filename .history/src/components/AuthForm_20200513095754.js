@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -9,7 +9,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
-import { useAuth } from "../context/auth";
+import { useAuth } from "../context/auth";ç
 import axios from 'axios';
 import { Redirect } from "react-router-dom";
 
@@ -37,27 +37,31 @@ function AuthForm(props) {
        
     const [user, setUser] = useState("");
     const [password, setPassword] = useState("");
+    const [isLoggedIn, setLoggedIn] = useState(false);
     const { setAuthTokens } = useAuth();
 
     const classes = useStyles();
 
-    function onLoginForm_Submit() {
-      axios.post("http://localhost:5000/api/authenticate", {
+    const onLoginForm_Submit = () => {
+      axios.post("localhost:5000", {
         user,
         password
-      }).then(result => {        
+      }).then(result => {
         if (result.status === 200) {
-          console.log(result)
           setAuthTokens(result.data);
-          return <Redirect to="/admin"/>;
-        } else {          
-          console.log("Error: " + result.status);
+          setLoggedIn(true);
+        } else {
+          setLoggedIn(false);
         }
       }).catch(e => {
-        console.log("Error" + e);
-      });        
+        setLoggedIn(false);
+      });
     }
-           
+  
+    if (isLoggedIn) {
+      return <Redirect to="/admin" />;
+    }
+    
     return <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
@@ -69,7 +73,7 @@ function AuthForm(props) {
             Sign in
             </Typography>
 
-            <form className={classes.form} validate="true" method="get" action="/admin" onSubmit={onLoginForm_Submit}>
+            <form className={classes.form} validate="true" action="#" onSubmit={onLoginForm_Submit.bind(this)}>
                 <TextField
                     variant="outlined"
                     margin="normal"
@@ -106,9 +110,10 @@ function AuthForm(props) {
                     className={classes.submit}
                 >
                     Sign In
-                </Button>                               
-            </form>           
+                </Button>                
+            </form>
         </div>
+
       </Container>;
 }
 

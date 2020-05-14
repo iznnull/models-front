@@ -11,7 +11,8 @@ import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import { useAuth } from "../context/auth";
 import axios from 'axios';
-import { Redirect } from "react-router-dom";
+import PrivateRoute from './routes/PrivateRoute';
+import Admin from "../../pages/Admin";
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -49,7 +50,7 @@ function AuthForm(props) {
         if (result.status === 200) {
           console.log(result)
           setAuthTokens(result.data);
-          return <Redirect to="/admin"/>;
+          return <PrivateRoute path="/admin" component={Admin} />
         } else {          
           console.log("Error: " + result.status);
         }
@@ -57,7 +58,7 @@ function AuthForm(props) {
         console.log("Error" + e);
       });        
     }
-           
+       
     return <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
@@ -69,7 +70,7 @@ function AuthForm(props) {
             Sign in
             </Typography>
 
-            <form className={classes.form} validate="true" method="get" action="/admin" onSubmit={onLoginForm_Submit}>
+            <form className={classes.form} validate="true" onSubmit={onLoginForm_Submit}>
                 <TextField
                     variant="outlined"
                     margin="normal"
@@ -106,8 +107,8 @@ function AuthForm(props) {
                     className={classes.submit}
                 >
                     Sign In
-                </Button>                               
-            </form>           
+                </Button>                
+            </form>
         </div>
       </Container>;
 }

@@ -57,7 +57,11 @@ function AuthForm(props) {
         console.log("Error" + e);
       });        
     }
-           
+
+    function goAdmin() {
+      return <Redirect to="/admin"/>;
+    }
+       
     return <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
@@ -69,7 +73,7 @@ function AuthForm(props) {
             Sign in
             </Typography>
 
-            <form className={classes.form} validate="true" method="get" action="/admin" onSubmit={onLoginForm_Submit}>
+            <form className={classes.form} validate="true" onSubmit={onLoginForm_Submit}>
                 <TextField
                     variant="outlined"
                     margin="normal"
@@ -107,7 +111,17 @@ function AuthForm(props) {
                 >
                     Sign In
                 </Button>                               
-            </form>           
+            </form>
+            <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                    className={classes.submit}
+                    onClick={goAdmin}
+                >
+                    Goo
+                </Button> 
         </div>
       </Container>;
 }

@@ -9,9 +9,6 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
-import { useAuth } from "../context/auth";
-import axios from 'axios';
-import { Redirect } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -34,30 +31,25 @@ const useStyles = makeStyles((theme) => ({
   }));
   
 function AuthForm(props) {    
-       
-    const [user, setUser] = useState("");
-    const [password, setPassword] = useState("");
-    const { setAuthTokens } = useAuth();
-
-    const classes = useStyles();
 
     function onLoginForm_Submit() {
-      axios.post("http://localhost:5000/api/authenticate", {
-        user,
-        password
-      }).then(result => {        
-        if (result.status === 200) {
-          console.log(result)
-          setAuthTokens(result.data);
-          return <Redirect to="/admin"/>;
-        } else {          
-          console.log("Error: " + result.status);
-        }
-      }).catch(e => {
-        console.log("Error" + e);
-      });        
+      console.log("log in" + user + password)
     }
-           
+
+    function handleUserChange(event) {
+      console.log(event)
+      setUser(event.target.value)
+    }
+
+    function handlePasswordChange(event) {
+
+    }
+    
+    const [user, setUser] = useState("");
+    const [password, setPassword] = useState("");
+
+    const classes = useStyles();
+    
     return <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
@@ -69,7 +61,7 @@ function AuthForm(props) {
             Sign in
             </Typography>
 
-            <form className={classes.form} validate="true" method="get" action="/admin" onSubmit={onLoginForm_Submit}>
+            <form className={classes.form} validate="true" action="#" onSubmit={onLoginForm_Submit.bind(this)}>
                 <TextField
                     variant="outlined"
                     margin="normal"
@@ -80,7 +72,7 @@ function AuthForm(props) {
                     name="user"
                     autoComplete="user"
                     autoFocus
-                    onChange={(e) => setUser(e.target.value)}
+                    onChange={handleUserChange.bind(this)}
                 />
                 <TextField
                     variant="outlined"
@@ -92,7 +84,7 @@ function AuthForm(props) {
                     type="password"
                     id="password"
                     autoComplete="current-password"
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={handlePasswordChange.bind(this)}
                 />
                 <FormControlLabel
                     control={<Checkbox value="remember" color="primary" />}
@@ -106,9 +98,10 @@ function AuthForm(props) {
                     className={classes.submit}
                 >
                     Sign In
-                </Button>                               
-            </form>           
+                </Button>                
+            </form>
         </div>
+
       </Container>;
 }
 

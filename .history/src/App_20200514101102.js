@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 import PrivateRoute from './routes/PrivateRoute';
 import Admin from "./pages/Admin";
 import AuthForm from "./components/AuthForm"
@@ -24,8 +24,8 @@ function App(props) {
           </li>
           </ul>
           <Switch>
-            <Route exact path="/" component={AuthForm} />
-            <PrivateRoute path="/admin" component={Admin} />
+          <Route exact path="/" component={AuthForm} />
+          <PrivateRoute path="/admin" component={Admin} />
           </Switch>
         </div>
       </Router>

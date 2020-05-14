@@ -69,7 +69,7 @@ function AuthForm(props) {
             Sign in
             </Typography>
 
-            <form className={classes.form} validate="true" method="get" action="/admin" onSubmit={onLoginForm_Submit}>
+            <form className={classes.form} validate="true" action={onLoginForm_Submit}>
                 <TextField
                     variant="outlined"
                     margin="normal"

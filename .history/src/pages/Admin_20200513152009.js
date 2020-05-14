@@ -2,7 +2,6 @@ import React from "react";
 import { useAuth } from "../context/auth";
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
-import { Redirect } from "react-router-dom";
 
 function Admin(props) {
 
@@ -10,8 +9,6 @@ function Admin(props) {
 
   function logOut() {
     setAuthTokens();    
-    localStorage.removeItem("tokens");
-    return <Redirect to="/"/>;
   }
 
   return <Container component="main" maxWidth="xs">
@@ -20,7 +17,7 @@ function Admin(props) {
         fullWidth
         variant="contained"
         color="primary"
-        onClick={logOut}
+        onSubmit={logOut.bind(this)}
     >
         Log out
     </Button>  

@@ -10,7 +10,6 @@ function Admin(props) {
 
   function logOut() {
     setAuthTokens();    
-    localStorage.removeItem("tokens");
     return <Redirect to="/"/>;
   }
 

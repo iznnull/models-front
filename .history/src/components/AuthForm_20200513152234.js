@@ -37,11 +37,12 @@ function AuthForm(props) {
        
     const [user, setUser] = useState("");
     const [password, setPassword] = useState("");
+    const [isLoggedIn, setLoggedIn] = useState(false);
     const { setAuthTokens } = useAuth();
 
     const classes = useStyles();
 
-    function onLoginForm_Submit() {
+    const onLoginForm_Submit = () => {
       axios.post("http://localhost:5000/api/authenticate", {
         user,
         password
@@ -49,15 +50,18 @@ function AuthForm(props) {
         if (result.status === 200) {
           console.log(result)
           setAuthTokens(result.data);
-          return <Redirect to="/admin"/>;
+          setLoggedIn(true);   
+          if (isLoggedIn) {
+            return <Redirect to="/admin" />;
+          }       
         } else {          
-          console.log("Error: " + result.status);
+          setLoggedIn(false);
         }
       }).catch(e => {
-        console.log("Error" + e);
-      });        
+        setLoggedIn(false);
+      });
     }
-           
+       
     return <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
@@ -69,7 +73,7 @@ function AuthForm(props) {
             Sign in
             </Typography>
 
-            <form className={classes.form} validate="true" method="get" action="/admin" onSubmit={onLoginForm_Submit}>
+            <form className={classes.form} validate="true" action="#" onSubmit={onLoginForm_Submit}>
                 <TextField
                     variant="outlined"
                     margin="normal"
@@ -106,8 +110,8 @@ function AuthForm(props) {
                     className={classes.submit}
                 >
                     Sign In
-                </Button>                               
-            </form>           
+                </Button>                
+            </form>
         </div>
       </Container>;
 }
