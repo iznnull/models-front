@@ -19,13 +19,11 @@ function App(props) {
     <AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens }}>
       <Router>
         <div>
-        {authTokens === null &&
           <ul>         
-            <li>
-              <Link to="/models">Models</Link>
-            </li>
+          <li>
+            <Link to="/models">Models</Link>
+          </li>
           </ul>
-        }          
           <Switch>
             <Route exact path="/" component={AuthForm} />
             <PrivateRoute path="/models" component={Items} />

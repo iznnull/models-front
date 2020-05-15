@@ -25,7 +25,8 @@ function App(props) {
               <Link to="/models">Models</Link>
             </li>
           </ul>
-        }          
+        }
+          
           <Switch>
             <Route exact path="/" component={AuthForm} />
             <PrivateRoute path="/models" component={Items} />
