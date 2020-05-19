@@ -10,7 +10,7 @@ function LogOutButton(props) {
 
     function logOut() {
         setAuthTokens();    
-        localStorage.removeItem("token");
+        localStorage.removeItem("tokens");
         return <Redirect to="/"/>;
     }
 
@@ -18,11 +18,13 @@ function LogOutButton(props) {
         type="submit"        
         variant="contained"
         color="secondary"
-        endIcon={<AccountCircle/>}
-        onClick={logOut}>
-            <Hidden smDown>
-            Log out
+        endIcon={
+            <Hidden xsUp>
+            <AccountCircle/>
             </Hidden>            
+        }
+        onClick={logOut}>            
+            Log out            
         </Button>;
 
 }

@@ -42,7 +42,7 @@ function AuthForm(props) {
     const history = useHistory();
     const classes = useStyles();
 
-    
+    axios.defaults.headers.common.Authorization = 'Bearer ANY SECURITY TOKEN';
 
     const headers = {
       "Access-Control-Allow-Origin": "*",
@@ -56,8 +56,8 @@ function AuthForm(props) {
         password
       },{headers}).then(result => {        
         if (result.status === 200) {
-          console.log(result.headers.authorization);
-          setAuthTokens(result.headers.authorization);
+          console.log(result);
+          setAuthTokens(result.headers);
           history.push("/models");
         } else { 
           setErrorMessage(result.status);

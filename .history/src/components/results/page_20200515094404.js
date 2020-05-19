@@ -4,6 +4,7 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '../appBar';
 import './style.css';
 
@@ -16,7 +17,6 @@ function Page(props) {
     const isEmpty = results.length === 0;
 
     return (
-        <Fragment>
             <AppBar />
 
             <div className="results-page">
@@ -53,7 +53,6 @@ function Page(props) {
                     </div>)
                 }
             </div>
-        </Fragment>
     );
 }
 

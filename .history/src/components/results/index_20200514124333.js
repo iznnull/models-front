@@ -13,10 +13,6 @@ class Results extends Component {
         this.goTo = this.goTo.bind(this);
     }
 
-    componentDidMount() {
-        //TODO load cars from service
-    }
-
     goTo(path) {
         this.props.history.push(path);
     }

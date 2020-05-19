@@ -9,7 +9,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
-import { useAuth } from "../context/Auth";
+import { useAuth } from "../../context/Auth";
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
 
@@ -35,29 +35,22 @@ const useStyles = makeStyles((theme) => ({
   
 function AuthForm(props) {    
        
-    const [username, setUser] = useState("");
+    const [user, setUser] = useState("");
     const [password, setPassword] = useState("");
     const { setAuthTokens } = useAuth();
     const [errorMessage, setErrorMessage] = useState();
     const history = useHistory();
     const classes = useStyles();
 
-    
-
-    const headers = {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Headers": "Authorization"
-    }
-
     function onLoginForm_Submit(event) {
       event.preventDefault()
-      axios.post("http://localhost:8080/login", {
-        username,
+      axios.post("http://localhost:5000/api/authenticate", {
+        user,
         password
-      },{headers}).then(result => {        
+      }).then(result => {        
         if (result.status === 200) {
-          console.log(result.headers.authorization);
-          setAuthTokens(result.headers.authorization);
+          console.log(result)
+          setAuthTokens(result.data);
           history.push("/models");
         } else { 
           setErrorMessage(result.status);

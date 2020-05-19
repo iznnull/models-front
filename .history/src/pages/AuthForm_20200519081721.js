@@ -56,8 +56,8 @@ function AuthForm(props) {
         password
       },{headers}).then(result => {        
         if (result.status === 200) {
-          console.log(result.headers.authorization);
-          setAuthTokens(result.headers.authorization);
+          console.log(result);
+          setAuthTokens(result.headers);
           history.push("/models");
         } else { 
           setErrorMessage(result.status);

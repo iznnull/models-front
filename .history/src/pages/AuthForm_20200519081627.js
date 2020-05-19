@@ -41,7 +41,6 @@ function AuthForm(props) {
     const [errorMessage, setErrorMessage] = useState();
     const history = useHistory();
     const classes = useStyles();
-
     
 
     const headers = {
@@ -56,8 +55,8 @@ function AuthForm(props) {
         password
       },{headers}).then(result => {        
         if (result.status === 200) {
-          console.log(result.headers.authorization);
-          setAuthTokens(result.headers.authorization);
+          console.log(result.authorization);
+          setAuthTokens(result.authorization);
           history.push("/models");
         } else { 
           setErrorMessage(result.status);

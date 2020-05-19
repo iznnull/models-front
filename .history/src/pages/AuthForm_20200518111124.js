@@ -42,22 +42,15 @@ function AuthForm(props) {
     const history = useHistory();
     const classes = useStyles();
 
-    
-
-    const headers = {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Headers": "Authorization"
-    }
-
     function onLoginForm_Submit(event) {
       event.preventDefault()
       axios.post("http://localhost:8080/login", {
-        username,
+        user: username,
         password
-      },{headers}).then(result => {        
+      }).then(result => {        
         if (result.status === 200) {
-          console.log(result.headers.authorization);
-          setAuthTokens(result.headers.authorization);
+          console.log(result)
+          setAuthTokens(result.data);
           history.push("/models");
         } else { 
           setErrorMessage(result.status);

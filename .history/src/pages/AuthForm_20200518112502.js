@@ -42,12 +42,11 @@ function AuthForm(props) {
     const history = useHistory();
     const classes = useStyles();
 
-    
-
     const headers = {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Headers": "Authorization"
-    }
+      'Content-Type': 'text/plain',
+      "Access-Control-Allow-Origin": "*"
+  };
+
 
     function onLoginForm_Submit(event) {
       event.preventDefault()
@@ -56,8 +55,8 @@ function AuthForm(props) {
         password
       },{headers}).then(result => {        
         if (result.status === 200) {
-          console.log(result.headers.authorization);
-          setAuthTokens(result.headers.authorization);
+          console.log(result)
+          setAuthTokens(result.data);
           history.push("/models");
         } else { 
           setErrorMessage(result.status);

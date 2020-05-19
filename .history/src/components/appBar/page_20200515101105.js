@@ -17,7 +17,7 @@ function Page(props) {
     return (
         <AppBar position="sticky">
             <Toolbar className="appbar">
-                <Typography variant="h5" color="inherit">
+                <Typography variant="h3" color="inherit">
                     Ateam
                 </Typography>
 

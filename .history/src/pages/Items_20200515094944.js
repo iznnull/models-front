@@ -1,4 +1,5 @@
 import React from "react";
+import Container from '@material-ui/core/Container';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import store from '../redux/store';
@@ -7,7 +8,7 @@ import Details from '../components/details';
 
 function Items(props) {
 
-  return <div>
+  return <Container component="main" maxWidth="false">
         <Provider store={store}>
             <BrowserRouter>
                 <Switch>
@@ -16,6 +17,6 @@ function Items(props) {
                 </Switch>
             </BrowserRouter>
         </Provider>
-        </div>;
+    </Container>;
 }
 export default Items;

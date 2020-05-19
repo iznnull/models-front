@@ -35,29 +35,22 @@ const useStyles = makeStyles((theme) => ({
   
 function AuthForm(props) {    
        
-    const [username, setUser] = useState("");
+    const [user, setUser] = useState("");
     const [password, setPassword] = useState("");
     const { setAuthTokens } = useAuth();
     const [errorMessage, setErrorMessage] = useState();
     const history = useHistory();
     const classes = useStyles();
 
-    
-
-    const headers = {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Headers": "Authorization"
-    }
-
     function onLoginForm_Submit(event) {
       event.preventDefault()
-      axios.post("http://localhost:8080/login", {
-        username,
+      axios.post("http://localhost:5000/api/authenticate", {
+        user,
         password
-      },{headers}).then(result => {        
+      }).then(result => {        
         if (result.status === 200) {
-          console.log(result.headers.authorization);
-          setAuthTokens(result.headers.authorization);
+          console.log(result)
+          setAuthTokens(result.data);
           history.push("/models");
         } else { 
           setErrorMessage(result.status);
