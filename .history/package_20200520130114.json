@@ -6,26 +6,22 @@
     "@material-ui/core": "^4.1.2",
     "@material-ui/icons": "^3.0.1",
     "axios": "^0.19.2",
+    "jasmine": "^3.5.0",
+    "jasmine-core": "^3.5.0",
+    "karma": "^5.0.9",
+    "karma-jasmine": "^3.1.1",
+    "karma-webpack": "^4.0.2",
     "react": "^16.13.1",
-    "react-addons-test-utils": "^15.6.2",
     "react-dom": "^16.13.1",
     "react-redux": "^5.1.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
-    "redux": "^4.0.1",
-    "babel-loader": "^5.0.0",
-    "webpack": "^1.8.4",
-    "jasmine-core": "^2.2.0",
-    "karma": "^0.13.2",
-    "karma-jasmine": "^0.3.5",
-    "jasmine": "^2.2.1",
-    "karma-phantomjs-launcher": "^0.1.4",
-    "karma-webpack": "^1.6.0"
+    "redux": "^4.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "karma start",
+    "test": "jasmine JASMINE_CONFIG_PATH=jasmine.json",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -41,6 +37,11 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
+    ]
+  },
+  "babel": {
+    "presets": [
+     "react-app"
     ]
   }
 }
