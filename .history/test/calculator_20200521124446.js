@@ -21,7 +21,7 @@ export default class Calculator{
     }
 
     subtract(op1,op2){
-        return getDivide()? op1 / op2 : op1 - op2;
+        return getDivide()? op1/op2 : op1 - op2;
     }
 
 }

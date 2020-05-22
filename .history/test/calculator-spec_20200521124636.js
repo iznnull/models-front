@@ -22,7 +22,7 @@ describe('Calculator', () => {
     expect(sum).toBe(8);
     });
 
-    it('should divide two numbers', () => {
+    it('should subtract two numbers', () => {
 
         let calculator = new Calculator();
         spyOn(calculator, "getDivide").and.returnValue(true)

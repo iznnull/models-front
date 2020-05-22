@@ -20,17 +20,7 @@ describe('Calculator', () => {
     let sum = calculator.add(2,4);
 
     expect(sum).toBe(8);
-    });
-
-    it('should divide two numbers', () => {
-
-        let calculator = new Calculator();
-        spyOn(calculator, "getDivide").and.returnValue(true)
-
-        let sum = calculator.subtract(8,2);
-
-        expect(sum).toBe(4);
-    });
+});
 
     it('should subtract two numbers', () => {
 
