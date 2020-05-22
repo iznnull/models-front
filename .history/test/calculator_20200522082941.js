@@ -12,12 +12,12 @@ export class Calculator{
         return this.state.multiply;
     };
 
-    getDivide = function() {
+    getDivide() {
         return this.state.divide;
-    };
+    }
 
     add(op1,op2){
-        return getMultiply()? op1 * op2 : op1 + op2;        
+        return getMultiply? op1 * op2 : op1 + op2;        
     }
 
     subtract(op1,op2){
